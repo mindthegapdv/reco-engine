@@ -19,13 +19,13 @@ graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bo
 @app.route("/")
 
 def hello():
-    query = "CREATE (n:Person { name: 'Matt', title: 'Right' })"
-    graph.run(query)
-    query = "MATCH n RETURN n.name as name, n.title as title"
+	query = "CREATE (n:Person { name: 'Matt', title: 'Right' })"
+	graph.run(query)
+	query = "MATCH n RETURN n.name as name, n.title as title"
 	df = pd.DataFrame(graph.run(query))
 	df.columns=['name', 'title']
 
-    return df.head()
+	return df.head()
 
 
 @app.route("/test")
