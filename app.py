@@ -14,14 +14,20 @@ graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
 graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bolt = True, secure = True, http_port = 24789, https_port = 24780)
 
 
+def serialize_genre(participant):
+    return {
+        'id': participant['id'],
+        'name': participant['name'],
+    }
+
 @app.route("/")
 
 def hello():
-	query = "MATCH (n) RETURN n limit 3"
+	query = "MATCH (participant:Participant) RETURN n limit 3"
 	result = graph.run(query)
 
-	for record in result:
-		return record[0]
+	return [serialize_genre(record['participant']) for record in result]
+
 
 
 @app.route("/test")
