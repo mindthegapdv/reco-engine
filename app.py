@@ -76,7 +76,8 @@ def dislike(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
 			WHERE p.email = "%s" and o.order_id = %s
 			MERGE (p)-[r3:LIKES]->(c)
-			SET r.value = r.value - 1''' % (email, order_num)
+			WITH r3, r3.value as val
+			SET r3.value = val - 1''' % (email, order_num)
 	graph.run(query)
 
 	return str(email) + " dislikes " + str(order_num)
@@ -93,7 +94,7 @@ def find_fit(order):
 	df = pd.DataFrame(graph.run(query))
 	df.columns = ['email', 'affinity', 'weight']
 
-	sum_affinity = sum(df.affinity)
+	sum_affinity = df.affinity.sum()
 
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
 			WHERE o.order_id = %s

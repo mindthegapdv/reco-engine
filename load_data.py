@@ -51,7 +51,7 @@ graph.run(query)
 
 # create participants 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		CREATE (n:Participant {participant_id: row.id, first_name: row.first_name, last_name: row.last_name, email: row.email,
+		CREATE (n:Participant {participant_id: toInteger(row.id), first_name: row.first_name, last_name: row.last_name, email: row.email,
 		gender: toInteger(row.gender), weight: toInteger(row.weight), healthy_feeling: toInteger(row.healthy_feeling), 
 		ethnic_food: toInteger(row.ethnic_food), diet_restrictions: row.diet_restrictions})'''
 graph.run(query)
@@ -70,7 +70,7 @@ graph.run(query)
 
 # adds participants to groups
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/membership.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Group {name: row.client})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Group {name: row.client})
 		MERGE (n)-[rel:BELONGS_TO]->(c)'''
 graph.run(query)
 
@@ -80,19 +80,19 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/diet.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Diet {name: row.diet_restrictions})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Diet {name: row.diet_restrictions})
 		MERGE (n)-[rel:REQUIRES]->(c)'''
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Cuisine {name: row.fav_cuisine})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Cuisine {name: row.fav_cuisine})
 		MERGE (n)-[rel:LIKES]->(c)
 		set rel.value = 5'''
 graph.run(query)
 
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Cuisine {name: "Greek"})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Cuisine {name: "Greek"})
 		WITH n, c, toInteger(row.greek_food) as val
 		WHERE val > 2 
 	 	MERGE (n)-[rel:LIKES]->(c)
@@ -101,7 +101,7 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Cuisine {name: "Indian"})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Cuisine {name: "Indian"})
 		WITH n, c, toInteger(row.indian_food) as val
 		WHERE val > 2 
 	 	MERGE (n)-[rel:LIKES]->(c)
@@ -109,7 +109,7 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Cuisine {name: "Italian"})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Cuisine {name: "Italian"})
 		WITH n, c, toInteger(row.italian_food) as val
 		WHERE val > 2 
 	 	MERGE (n)-[rel:LIKES]->(c)
@@ -117,7 +117,7 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MATCH (n:Participant {participant_id: row.id}), (c:Cuisine {name: "Arabic"})
+		MATCH (n:Participant {participant_id: toInteger(row.id)}), (c:Cuisine {name: "Arabic"})
 		WITH n, c, toInteger(row.arabic_food) as val
 		WHERE val > 2 
 	 	MERGE (n)-[rel:LIKES]->(c)
@@ -134,22 +134,22 @@ graph.run(query)
 
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
-		MERGE (n:Order {order_id: row.order_id, date: date(row.date), time: row.time})'''
+		MERGE (n:Order {order_id: toInteger(row.order_id), date: date(row.date), time: row.time})'''
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
-		MATCH (n:Order {order_id: row.order_id}), (c:Group {name: row.client})
+		MATCH (n:Order {order_id: toInteger(row.order_id)}), (c:Group {name: row.client})
 		MERGE (n)-[rel:IS_FOR]->(c)'''
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
-		MATCH (n:Order {order_id: row.order_id}), (c:Cuisine {name: row.catering})
+		MATCH (n:Order {order_id: toInteger(row.order_id)}), (c:Cuisine {name: row.catering})
 		MERGE (n)-[rel:ORDERED]->(c)'''
 graph.run(query)
 
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/final_dataset.csv" AS row
-		MATCH (n:Order {order_id: row.order_id}), (c:Participant {id: row.id})
+		MATCH (n:Order {order_id: toInteger(row.order_id)}), (c:Participant {id: row.id})
 		MERGE (c)-[rel:PARTICIPATED_IN]->(n)'''
 graph.run(query)
 
