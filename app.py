@@ -5,6 +5,8 @@ from neo4j.v1 import GraphDatabase, basic_auth
 
 from py2neo import Graph, authenticate
 
+import pandas as pd
+
 from flask import Flask, request, jsonify
 app = Flask(__name__)
 
