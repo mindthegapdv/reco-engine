@@ -32,25 +32,62 @@ def hello():
 # create order 
 # date = yyyy-mm-dd
 # time = hh:ss
-@app.route('/create-order/<date>/<time>')
+@app.route('/create-order/<order_num>/<date>/<time>')
 
-def create_order(date,time):
+def create_order(order_num,date,time):
 	query = '''CREATE (o:Order) 
-			SET o.date = "%s", o.time = "%s"''' % (date, time)
+			SET id(o) = toInteger(%s), o.date = "%s", o.time = "%s"''' % (order_num, date, time)
 	graph.run(query)
 
-	return "Order created for " + str(date) + " at " + str(time)
+	return "Order number " + str(order_num) + " created for " + str(date) + " at " + str(time)
 
-# # link order and participant 
-# @app.route('/fit/<order>/<participant>')
 
-# def find_fit(order):
-# 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)-[r3:LIKES]-(c2)
-# 			WHERE id(o) = %s
-# 			AND c1=c2
-# 			RETURN p.email as email, r3.value as affinity, p.weight as weight''' %order
-# 	df = pd.DataFrame(graph.run(query))
-# 	df.columns=['email', 'affinity', 'weight']
+# link order and participant (for this hackathon, assuming no new participants)
+@app.route('/add-participant/<order_num>/<email>')
+
+def add_participant(order_num,email):
+	query = '''MATCH (p:Participant), (o:Order)
+			WHERE p.email = "%s" and id(o) = %s
+			MERGE (p)-[r:PARTICIPATED_IN]->(o)
+			SET r.value = 0
+			"''' % (email, order_num)
+	graph.run(query)
+
+	return str(email) + " added to order number " + str(order_num)
+
+
+# add participant likes order
+@app.route('/like/<order_num>/<email>/')
+
+def like(order_num,email):
+	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)
+			WHERE p.email = "%s" and id(o) = %s
+			SET r.value = r.value + 1''' % (email, order_num)
+	graph.run(query)
+
+	return str(email) + " likes " + str(order_num)
+
+
+# add participant dislikes meal
+@app.route('/dislike/<order_num>/<email>/')
+
+def dislike(order_num,email):
+	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)
+			WHERE p.email = "%s" and id(o) = %s
+			SET r.value = r.value - 1''' % (email, order_num)
+	graph.run(query)
+
+	return str(email) + " dislikes " + str(order_num)
+
+
+
+def find_fit(order):
+	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)-[r3:LIKES]-(c2)
+			WHERE id(o) = %s
+			AND c1=c2
+			RETURN p.email as email, r3.value as affinity, p.weight as weight''' %order
+	df = pd.DataFrame(graph.run(query))
+	df.columns=['email', 'affinity', 'weight']
 
 
 # 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
