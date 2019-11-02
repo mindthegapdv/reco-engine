@@ -24,7 +24,7 @@ def hello():
 	query = "MATCH (p:Participant) RETURN count(p) as count"
 	result = graph.run(query)
 
-	return int([get_count(record['count']) for record in result])
+	return int([get_count(record['count']) for record in result][0])
 
 
 # create order 
@@ -98,7 +98,7 @@ def find_fit(order):
 			WHERE o.order_id = %s
 			RETURN count(p) as count''' % order
 	result = graph.run(query)
-	participants = int([get_count(record['count']) for record in result])
+	participants = int([get_count(record['count']) for record in result][0])
 
 	max_score = participants*5
 
