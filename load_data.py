@@ -127,7 +127,7 @@ graph.run(query)
 
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
-		CREATE (n:Order {id: row.order_id, date: date(row.date), time: row.time})'''
+		MERGE (n:Order {id: row.order_id, date: date(row.date), time: row.time})'''
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
