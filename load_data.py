@@ -6,7 +6,6 @@ import os
 
 df = pd.read_csv("static/orders.csv")
 df2 = pd.read_csv('static/participants.csv')
-print(df2.head())
 
 # gets max group size
 df_agg = df[['client', 'people']]
@@ -33,7 +32,7 @@ for i in range(len(df)):
         list3 = list(df.iloc[i])
         list3.append(item)
         list4.append(list3)
-df4 = pd.DataFrame(list4, columns=['date', 'time', 'people', 'catering', 'client', 'id'])
+df4 = pd.DataFrame(list4, columns=['order_id', 'date', 'time', 'people', 'catering', 'client', 'id'])
 
 df_final = pd.merge(df4, df2, on='id', how='left')
 df_final.to_csv("static/final_dataset.csv", index=False)
@@ -44,6 +43,8 @@ graphenedb_user = os.environ.get("GRAPHENEDB_BOLT_USER")
 graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
 graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bolt = True, secure = True, http_port = 24789, https_port = 24780)
 
+query = "MATCH (n) DETACH DELETE n"
+graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
 		CREATE (n:Participant {id: row.id, first_name: row.first_name, last_name: row.last_name, email: row.email,
@@ -55,6 +56,17 @@ graph.run(query)
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
 		MERGE (n:Cuisine {name: row.fav_cuisine})'''
 graph.run(query)
+
+
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/membership.csv" AS row
+		MERGE (n:Group {name: row.client, size: toInteger(row.people)})'''
+graph.run(query)
+
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/membership.csv" AS row
+		MATCH (n:Participant {id: row.id}), (c:Group {name: row.client})
+		MERGE (n)-[rel:BELONGS_TO]->(c)'''
+graph.run(query)
+
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/diet.csv" AS row
 		MERGE (n:Diet {name: row.diet_restrictions})'''
@@ -112,6 +124,7 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 	 	MERGE (n)-[rel:LIKES]->(c)
 		set rel.value = val'''
 graph.run(query)
+
 
 
 
