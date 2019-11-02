@@ -61,7 +61,7 @@ def add_participant(order_num,email):
 def like(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
 			WHERE p.email = "%s" and id(o) = %s 
-			MERGE (p)-(r3:LIKES)->(c)
+			MERGE (p)-[r3:LIKES]->(c)
 			SET r3.value = r3.value + 1''' % (email, order_num)
 	graph.run(query)
 
@@ -74,7 +74,7 @@ def like(order_num,email):
 def dislike(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
 			WHERE p.email = "%s" and id(o) = %s
-			MERGE (p)-(r3:LIKES)-(c)
+			MERGE (p)-[r3:LIKES]->(c)
 			SET r.value = r.value - 1''' % (email, order_num)
 	graph.run(query)
 
@@ -90,14 +90,19 @@ def find_fit(order):
 			AND c1=c2
 			RETURN p.email as email, r3.value as affinity, p.weight as weight''' %order
 	df = pd.DataFrame(graph.run(query))
-	df.columns=['email', 'affinity', 'weight']
+	df.columns = ['email', 'affinity', 'weight']
+
+	sum_affinity = sum(df.affinity)
 
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
 			WHERE id(o) = %s
 			RETURN count(p)''' % order
+	participants = graph.run(query)
+	print(participants)
 
+	max_score = participants*5
 
-
+	fit = sum_affinity/max_score
 
 	return fit
 
