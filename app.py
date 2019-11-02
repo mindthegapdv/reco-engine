@@ -29,17 +29,17 @@ def hello():
 	return str([get_email(record['participant']) for record in result])
 
 
-# # create order 
-# # date = yyyy-mm-dd
-# # time = hh:ss
-# @app.route('/create/<date>/<time>')
+# create order 
+# date = yyyy-mm-dd
+# time = hh:ss
+@app.route('/create-order/<date>/<time>')
 
-# def create_order(order_num,date,time):
-# 	query = '''CREATE (o:Order) 
-# 			SET o.date = %s, o.time = %s''' % (date, time)
-# 	graph.run(query)
+def create_order(date,time):
+	query = '''CREATE (o:Order) 
+			SET o.date = %s, o.time = %s''' % (date, time)
+	graph.run(query)
 
-# 	return "Order created for " + str(date) + " at " + str(time)
+	return "Order created for " + str(date) + " at " + str(time)
 
 # # link order and participant 
 # @app.route('/fit/<order>/<participant>')
