@@ -23,7 +23,7 @@ def hello():
 	result = graph.run(query)
 
 	for record in result:
-    	return record[0]
+		return record[0]
 
 
 @app.route("/test")
