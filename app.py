@@ -17,9 +17,7 @@ graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bo
 @app.route("/")
 
 def hello():
-	query = "CREATE (n:Person { name: 'Matt', title: 'Right' })"
-	graph.run(query)
-	query = "MATCH (n) RETURN n"
+	query = "MATCH (n) RETURN n limit 3"
 	result = graph.run(query)
 
 	for record in result:
