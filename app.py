@@ -15,7 +15,7 @@ graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bo
 
 
 def get_count(count):
-    return count  
+    return count[0]
     
 
 @app.route("/test1")
