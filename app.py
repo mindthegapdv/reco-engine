@@ -15,7 +15,7 @@ graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bo
 
 
 def get_count(count):
-    return count[0]
+    return count
     
 
 @app.route("/test1")
@@ -24,7 +24,7 @@ def hello():
 	query = "MATCH (p:Participant) RETURN count(p) as count"
 	result = graph.run(query)
 
-	return str([get_count(record['count']) for record in result])
+	return str(get_count(record['count']) for record in result)
 
 
 # create order 
@@ -98,7 +98,7 @@ def find_fit(order):
 			WHERE o.order_id = %s
 			RETURN count(p) as count''' % order
 	result = graph.run(query)
-	participants = int(result['count'])
+	participants = int(get_count(record['count']) for record in result)
 
 	max_score = participants*5
 
