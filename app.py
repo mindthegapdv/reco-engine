@@ -24,7 +24,7 @@ def hello():
 	query = "MATCH (p:Participant) RETURN count(p) as count"
 	result = graph.run(query)
 
-	return str(get_count(record['count']) for record in result)
+	return int([get_count(record['count']) for record in result])
 
 
 # create order 
@@ -81,7 +81,7 @@ def dislike(order_num,email):
 	return str(email) + " dislikes " + str(order_num)
 
 
-
+# gets "fit" score of order compared to preferences of participants
 @app.route('/fit/<order>')
 
 def find_fit(order):
@@ -98,7 +98,7 @@ def find_fit(order):
 			WHERE o.order_id = %s
 			RETURN count(p) as count''' % order
 	result = graph.run(query)
-	participants = int(get_count(record['count']) for record in result)
+	participants = int([get_count(record['count']) for record in result])
 
 	max_score = participants*5
 
