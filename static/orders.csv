@@ -1,115 +1,115 @@
-order_id,date,time,people,catering,client,order num
-1,2019-09-30,9:30,14,General,Godzilla,1
-2,2019-09-30,12:00,14,General,Godzilla,2
-3,2019-09-30,12:30,15,Asian,Alchemy,3
-4,2019-10-01,11:45,14,Italian,Florio,4
-5,2019-10-01,12:00,8,General,Client Visit,5
-6,2019-10-01,12:30,12,Greek,Foxglove,6
-7,2019-10-02,8:30,20,General,Client Visit,7
-8,2019-10-02,9:30,22,General,Godzilla,8
-9,2019-10-02,12:00,20,General,Client Visit,9
-10,2019-10-02,12:00,16,General,Florio,9
-11,2019-10-02,12:30,14,Healthy,Destiny,10
-12,2019-10-02,12:30,12,Indian,Pluto,10
-13,2019-10-03,11:45,14,General,Florio,11
-14,2019-10-03,12:00,20,Greek,ConnectNow,12
-15,2019-10-03,12:15,15,General,Endeavour,13
-16,2019-10-03,12:30,20,General,SmartCycle,14
-17,2019-10-03,12:30,12,Arabic,Foxglove,14
-18,2019-10-07,8:00,25,General,Foxglove,15
-19,2019-10-07,9:00,35,General,Owl,16
-21,2019-10-07,11:30,25,General,Foxglove,17
-20,2019-10-07,12:30,12,Healthy,Partner Meeting,18
-22,2019-10-07,12:30,35,General,Owl,18
-23,2019-10-07,15:00,15,General,Partner Meeting,19
-24,2019-10-09,8:00,20,General,Client Visit,20
-25,2019-10-10,8:00,12,General,Client Visit,21
-26,2019-10-10,8:30,17,General,Oryx,22
-27,2019-10-10,11:15,12,General,Client Visit,23
-28,2019-10-10,11:45,14,Asian,Florio,24
-29,2019-10-10,12:00,20,General,ConnectNow,25
-30,2019-10-10,12:00,20,General,Owl,25
-31,2019-10-10,12:00,18,General,Ortus,25
-32,2019-10-14,8:00,35,General,Endeavour,26
-33,2019-10-14,11:00,35,General,Endeavour,27
-34,2019-10-14,12:00,10,General,Client Visit,28
-35,2019-10-14,12:30,15,Healthy,Alchemy,29
-36,2019-10-14,16:45,40,General,Koru,30
-37,2019-10-15,11:45,14,Greek,Florio,31
-38,2019-10-15,12:00,18,Italian,Ortus,32
-39,2019-10-15,12:30,12,General,Foxglove,33
-40,2019-10-16,7:30,6,Healthy,Julia Burnett,34
-41,2019-10-16,12:00,12,General,PGC Committee,35
-42,2019-10-16,12:30,12,Spanish,Ceres,36
-43,2019-10-16,14:00,20,General,COP26 Summit,37
-44,2019-10-21,12:00,13,Spanish,Godzilla,38
-45,2019-10-21,12:00,8,General,PGC Committee,38
-46,2019-10-21,12:15,40,General,Forward,39
-47,2019-10-21,12:30,15,Italian,Alchemy,40
-48,2019-10-22,8:20,30,General,ConnectNow,41
-49,2019-10-22,11:45,14,Asian,Florio,42
-50,2019-10-22,12:00,16,General,PGC Committee,43
-51,2019-10-22,12:00,13,General,Godzilla,43
-52,2019-10-22,12:00,30,General,ConnectNow,43
-53,2019-10-22,12:15,40,General,Forward,44
-54,2019-10-22,12:30,10,Asian,Cerus,45
-55,2019-10-22,12:30,12,General,Ortus,45
-57,2019-10-23,12:00,8,General,PGC Committee,46
-58,2019-10-23,12:00,13,Asian,Godzilla,46
-59,2019-10-23,12:15,30,General,Forward,47
-56,2019-10-23,12:30,14,Asian,Destiny,48
-60,2019-10-24,11:45,14,Asian,Florio,49
-61,2019-10-24,12:00,18,Asian,Ortus,50
-62,2019-10-24,12:00,13,Asian,Godzilla,50
-63,2019-10-24,12:00,20,Greek,ConnectNow,50
-64,2019-10-24,12:00,15,General,PGC Committee,50
-65,2019-10-24,12:30,20,Italian,Owl,51
-66,2019-10-25,7:30,40,General,WESA,52
-67,2019-10-25,8:20,30,General,Godzilla,53
-68,2019-10-25,12:00,40,General,WESA,54
-69,2019-10-25,12:00,15,Asian,CentreOps,54
-70,2019-10-25,13:00,25,General,Godzilla,55
-71,2019-10-28,8:00,15,General,Client Visit,56
-72,2019-10-28,8:30,30,General,Ceres,57
-73,2019-10-28,11:30,30,General,Ceres,58
-74,2019-10-28,12:00,40,General,Forward,59
-75,2019-10-28,12:00,13,Healthy,Godzilla,59
-76,2019-10-28,12:30,10,Asian,Alchemy,60
-77,2019-10-28,13:00,20,General,Ceres,61
-78,2019-10-29,11:00,20,General,Ceres,62
-79,2019-10-29,11:30,30,General,Ceres,63
-80,2019-10-29,11:45,14,Spanish,Florio,64
-81,2019-10-29,12:00,10,General,Ortus,65
-82,2019-10-29,12:30,10,Spanish,Ceres,66
-83,2019-10-29,12:30,12,Greek,Ortus,66
-84,2019-10-29,12:30,12,Indian,Foxglove,66
-85,2019-10-30,11:30,30,General,Ceres,67
-86,2019-10-30,12:00,16,General,PGC Committee,68
-87,2019-10-30,12:30,14,Greek,Destiny,69
-88,2019-10-30,12:30,40,General,Forward,69
-89,2019-10-31,11:30,30,General,Ceres,70
-90,2019-10-31,11:45,14,Italian,Florio,71
-91,2019-10-31,12:00,18,Arabic,Ortus,72
-92,2019-10-31,12:00,20,Asian,ConnectNow,72
-93,2019-10-31,12:00,15,General,Godzilla,72
-94,2019-10-31,13:00,20,Asian,SmartCycle,73
-95,2019-10-31,18:00,30,General,Ceres,74
-96,2019-11-01,7:45,40,General,Ceres,75
-97,2019-11-01,8:30,20,General,Client Visit,76
-98,2019-11-01,11:30,20,General,Client Visit,77
-99,2019-11-01,11:30,40,General,Ceres,77
-100,2019-11-01,15:00,40,General,Ceres,78
-101,2019-11-04,11:45,10,Asian,Florio,79
-102,2019-11-04,12:00,6,General,Client Visit,80
-103,2019-11-04,12:00,10,General,Client Visit,80
-104,2019-11-04,12:30,10,Mexican,Alchemy,81
-105,2019-11-05,12:00,15,Asian,Godzilla,82
-106,2019-11-05,12:30,10,Italian,Ceres,83
-107,2019-11-05,12:30,12,Greek,Ortus,83
-108,2019-11-05,12:30,12,Arabic,Foxglove,83
-109,2019-11-06,12:30,14,Healthy,Destiny,84
-110,2019-11-07,12:00,18,Asian,Ortus,85
-111,2019-11-07,12:00,20,Asian,ConnectNow,85
-112,2019-11-07,12:00,20,General,Owl,85
-113,2019-11-07,12:00,15,Spanish,Godzilla,85
-114,2019-11-07,12:30,12,Asian,Foxglove,86
+order_id,date,time,people,catering,client
+1,2019-09-30,9:30,14,General,Godzilla
+2,2019-09-30,12:00,14,General,Godzilla
+3,2019-09-30,12:30,15,Asian,Alchemy
+4,2019-10-01,11:45,14,Italian,Florio
+5,2019-10-01,12:00,8,General,Client Visit
+6,2019-10-01,12:30,12,Greek,Foxglove
+7,2019-10-02,8:30,20,General,Client Visit
+8,2019-10-02,9:30,22,General,Godzilla
+9,2019-10-02,12:00,20,General,Client Visit
+9,2019-10-02,12:00,16,General,Florio
+10,2019-10-02,12:30,14,Healthy,Destiny
+10,2019-10-02,12:30,12,Indian,Pluto
+11,2019-10-03,11:45,14,General,Florio
+12,2019-10-03,12:00,20,Greek,ConnectNow
+13,2019-10-03,12:15,15,General,Endeavour
+14,2019-10-03,12:30,20,General,SmartCycle
+14,2019-10-03,12:30,12,Arabic,Foxglove
+15,2019-10-07,8:00,25,General,Foxglove
+16,2019-10-07,9:00,35,General,Owl
+17,2019-10-07,11:30,25,General,Foxglove
+18,2019-10-07,12:30,12,Healthy,Partner Meeting
+18,2019-10-07,12:30,35,General,Owl
+19,2019-10-07,15:00,15,General,Partner Meeting
+20,2019-10-09,8:00,20,General,Client Visit
+21,2019-10-10,8:00,12,General,Client Visit
+22,2019-10-10,8:30,17,General,Oryx
+23,2019-10-10,11:15,12,General,Client Visit
+24,2019-10-10,11:45,14,Asian,Florio
+25,2019-10-10,12:00,20,General,ConnectNow
+25,2019-10-10,12:00,20,General,Owl
+25,2019-10-10,12:00,18,General,Ortus
+26,2019-10-14,8:00,35,General,Endeavour
+27,2019-10-14,11:00,35,General,Endeavour
+28,2019-10-14,12:00,10,General,Client Visit
+29,2019-10-14,12:30,15,Healthy,Alchemy
+30,2019-10-14,16:45,40,General,Koru
+31,2019-10-15,11:45,14,Greek,Florio
+32,2019-10-15,12:00,18,Italian,Ortus
+33,2019-10-15,12:30,12,General,Foxglove
+34,2019-10-16,7:30,6,Healthy,Julia Burnett
+35,2019-10-16,12:00,12,General,PGC Committee
+36,2019-10-16,12:30,12,Spanish,Ceres
+37,2019-10-16,14:00,20,General,COP26 Summit
+38,2019-10-21,12:00,13,Spanish,Godzilla
+38,2019-10-21,12:00,8,General,PGC Committee
+39,2019-10-21,12:15,40,General,Forward
+40,2019-10-21,12:30,15,Italian,Alchemy
+41,2019-10-22,8:20,30,General,ConnectNow
+42,2019-10-22,11:45,14,Asian,Florio
+43,2019-10-22,12:00,16,General,PGC Committee
+43,2019-10-22,12:00,13,General,Godzilla
+43,2019-10-22,12:00,30,General,ConnectNow
+44,2019-10-22,12:15,40,General,Forward
+45,2019-10-22,12:30,10,Asian,Cerus
+45,2019-10-22,12:30,12,General,Ortus
+46,2019-10-23,12:00,8,General,PGC Committee
+46,2019-10-23,12:00,13,Asian,Godzilla
+47,2019-10-23,12:15,30,General,Forward
+48,2019-10-23,12:30,14,Asian,Destiny
+49,2019-10-24,11:45,14,Asian,Florio
+50,2019-10-24,12:00,18,Asian,Ortus
+50,2019-10-24,12:00,13,Asian,Godzilla
+50,2019-10-24,12:00,20,Greek,ConnectNow
+50,2019-10-24,12:00,15,General,PGC Committee
+51,2019-10-24,12:30,20,Italian,Owl
+52,2019-10-25,7:30,40,General,WESA
+53,2019-10-25,8:20,30,General,Godzilla
+54,2019-10-25,12:00,40,General,WESA
+54,2019-10-25,12:00,15,Asian,CentreOps
+55,2019-10-25,13:00,25,General,Godzilla
+56,2019-10-28,8:00,15,General,Client Visit
+57,2019-10-28,8:30,30,General,Ceres
+58,2019-10-28,11:30,30,General,Ceres
+59,2019-10-28,12:00,40,General,Forward
+59,2019-10-28,12:00,13,Healthy,Godzilla
+60,2019-10-28,12:30,10,Asian,Alchemy
+61,2019-10-28,13:00,20,General,Ceres
+62,2019-10-29,11:00,20,General,Ceres
+63,2019-10-29,11:30,30,General,Ceres
+64,2019-10-29,11:45,14,Spanish,Florio
+65,2019-10-29,12:00,10,General,Ortus
+66,2019-10-29,12:30,10,Spanish,Ceres
+66,2019-10-29,12:30,12,Greek,Ortus
+66,2019-10-29,12:30,12,Indian,Foxglove
+67,2019-10-30,11:30,30,General,Ceres
+68,2019-10-30,12:00,16,General,PGC Committee
+69,2019-10-30,12:30,14,Greek,Destiny
+69,2019-10-30,12:30,40,General,Forward
+70,2019-10-31,11:30,30,General,Ceres
+71,2019-10-31,11:45,14,Italian,Florio
+72,2019-10-31,12:00,18,Arabic,Ortus
+72,2019-10-31,12:00,20,Asian,ConnectNow
+72,2019-10-31,12:00,15,General,Godzilla
+73,2019-10-31,13:00,20,Asian,SmartCycle
+74,2019-10-31,18:00,30,General,Ceres
+75,2019-11-01,7:45,40,General,Ceres
+76,2019-11-01,8:30,20,General,Client Visit
+77,2019-11-01,11:30,20,General,Client Visit
+77,2019-11-01,11:30,40,General,Ceres
+78,2019-11-01,15:00,40,General,Ceres
+79,2019-11-04,11:45,10,Asian,Florio
+80,2019-11-04,12:00,6,General,Client Visit
+80,2019-11-04,12:00,10,General,Client Visit
+81,2019-11-04,12:30,10,Mexican,Alchemy
+82,2019-11-05,12:00,15,Asian,Godzilla
+83,2019-11-05,12:30,10,Italian,Ceres
+83,2019-11-05,12:30,12,Greek,Ortus
+83,2019-11-05,12:30,12,Arabic,Foxglove
+84,2019-11-06,12:30,14,Healthy,Destiny
+85,2019-11-07,12:00,18,Asian,Ortus
+85,2019-11-07,12:00,20,Asian,ConnectNow
+85,2019-11-07,12:00,20,General,Owl
+85,2019-11-07,12:00,15,Spanish,Godzilla
+86,2019-11-07,12:30,12,Asian,Foxglove
