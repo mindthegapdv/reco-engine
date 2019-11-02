@@ -56,8 +56,13 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 		MERGE (n:Cuisine {name: row.fav_cuisine})'''
 graph.run(query)
 
-query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
-		MERGE (n:Diet_restrictions {name: row.diet_restrictions})'''
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/diet.csv" AS row
+		MERGE (n:Diet {name: row.diet_restrictions})'''
+graph.run(query)
+
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/diet.csv" AS row
+		MATCH (n:Participant {id: row.id}), (c:Diet {name: row.diet_restrictions})
+		MERGE (n)-[rel:REQUIRES]->(c)'''
 graph.run(query)
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
