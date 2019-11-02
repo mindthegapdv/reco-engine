@@ -23,7 +23,7 @@ def hello():
 	df = pd.DataFrame(graph.run(query))
 	df.columns=['name', 'title']
 
-	return df.head()
+	return str(df.head())
 
 
 @app.route("/test")
