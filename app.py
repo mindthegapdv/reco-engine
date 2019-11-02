@@ -22,7 +22,8 @@ def hello():
 	query = "MATCH (n) RETURN n"
 	result = graph.run(query)
 
-	return str(result)
+	for record in result:
+    	return record[0]
 
 
 @app.route("/test")
