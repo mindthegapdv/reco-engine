@@ -118,7 +118,7 @@ def find_fit(order):
 	# cap max increase/decrease at 30%
 	fit = pref/statistics.mean([0.975, 0.058823529])*0.3
 
-	return str(statistics.mean(fit, change))
+	return str(statistics.mean([fit, change]))
 
 
 
