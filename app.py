@@ -62,7 +62,7 @@ def like(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
 			WHERE p.email = "%s" and id(o) = %s 
 			MERGE (p)-[r3:LIKES]->(c)
-			WITH r3 as val
+			WITH r3, r3.value as val
 			SET r3.value = val + 1''' % (email, order_num)
 	graph.run(query)
 
