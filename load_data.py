@@ -130,6 +130,24 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 		CREATE (n:Order {id: row.order_id, date: date(row.date), time: row.time})'''
 graph.run(query)
 
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
+		MATCH (n:Order {id: row.order_id}), (c:Group {name: row.client})
+		MERGE (n)-[rel:IS_FOR]->(c)'''
+graph.run(query)
+
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/orders.csv" AS row
+		MATCH (n:Order {id: row.order_id}), (c:Cuisine {name: row.catering})
+		MERGE (n)-[rel:ORDERED]->(c)'''
+graph.run(query)
+
+
+query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/final_dataset.csv" AS row
+		MATCH (n:Order {id: row.order_id}), (c:Participant {id: row.id})
+		MERGE (c)-[rel:PARTICIPATED_IN]->(n)'''
+graph.run(query)
+
+
+
 # df = pd.DataFrame(graph.run(query))
 # df.columns=['id', 'gender']
 # print(df.head())
