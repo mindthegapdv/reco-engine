@@ -14,19 +14,18 @@ graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
 graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bolt = True, secure = True, http_port = 24789, https_port = 24780)
 
 
-def get_email(participant):
+def get_count(count):
     return {
-        'id': participant['id'],
-        'email': participant['email'],
+        'count': count['count']    
     }
 
 @app.route("/test1")
 
 def hello():
-	query = "MATCH (participant:Participant) RETURN participant limit 3"
+	query = "MATCH (p:Participant) RETURN count(p) as count"
 	result = graph.run(query)
 
-	return str([get_email(record['participant']) for record in result])
+	return str([get_count(record['count']) for record in result])
 
 
 # create order 
