@@ -36,7 +36,7 @@ def hello():
 
 def create_order(order_num,date,time):
 	query = '''CREATE (o:Order) 
-			SET id(o) = toInteger(%s), o.date = "%s", o.time = "%s"''' % (order_num, date, time)
+			SET o.order_id = toInteger(%s), o.date = "%s", o.time = "%s"''' % (order_num, date, time)
 	graph.run(query)
 
 	return "Order number " + str(order_num) + " created for " + str(date) + " at " + str(time)
@@ -47,7 +47,7 @@ def create_order(order_num,date,time):
 
 def add_participant(order_num,email):
 	query = '''MATCH (p:Participant), (o:Order)
-			WHERE p.email = "%s" and id(o) = %s
+			WHERE p.email = "%s" and o.order_id = %s
 			MERGE (p)-[r:PARTICIPATED_IN]->(o)
 			SET r.value = 0''' % (email, order_num)
 	graph.run(query)
@@ -60,7 +60,7 @@ def add_participant(order_num,email):
 
 def like(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
-			WHERE p.email = "%s" and id(o) = %s 
+			WHERE p.email = "%s" and o.order_id = %s 
 			MERGE (p)-[r3:LIKES]->(c)
 			WITH r3, r3.value as val
 			SET r3.value = val + 1''' % (email, order_num)
@@ -74,7 +74,7 @@ def like(order_num,email):
 
 def dislike(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
-			WHERE p.email = "%s" and id(o) = %s
+			WHERE p.email = "%s" and o.order_id = %s
 			MERGE (p)-[r3:LIKES]->(c)
 			SET r.value = r.value - 1''' % (email, order_num)
 	graph.run(query)
@@ -87,7 +87,7 @@ def dislike(order_num,email):
 
 def find_fit(order):
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)-[r3:LIKES]-(c2)
-			WHERE id(o) = %s
+			WHERE o.order_id = %s
 			AND c1=c2
 			RETURN p.email as email, r3.value as affinity, p.weight as weight''' %order
 	df = pd.DataFrame(graph.run(query))
@@ -96,7 +96,7 @@ def find_fit(order):
 	sum_affinity = sum(df.affinity)
 
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
-			WHERE id(o) = %s
+			WHERE o.order_id = %s
 			RETURN count(p)''' % order
 	participants = graph.run(query)
 	print(participants)
