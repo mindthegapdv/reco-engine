@@ -34,6 +34,7 @@ def hello():
 
 
 # create order 
+# order_num needs to come from Matt, above 1000 pls
 # date = yyyy-mm-dd
 # time = hh:ss
 @app.route('/create-order/<order_num>/<date>/<time>')
@@ -99,18 +100,24 @@ def find_fit(order):
 	df.columns = ['email', 'affinity', 'weight']
 
 	sum_affinity = df.affinity.sum()
-
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
 			WHERE o.order_id = %s
 			RETURN count(p) as count''' % order
 	result = graph.run(query)
 	participants = int([get_count(record['count']) for record in result][0])
-
 	max_score = participants*5
+	pref = sum_affinity/max_score
 
-	fit = sum_affinity/max_score
+	# mean weight of entire population is 161 lbs. anything over that = more food. under = less food
+	# on average, 20 lbs = an increase of 12.6% increase in calories needed (according to some NHS paper)
+	mean_weight = df.weight.mean()
+	change = (mean_weight - 161)/20*0.126
 
-	return str(fit)
+	# max preference-based fit = 0.975;	min = 0.058823529
+	# cap max increase/decrease at 30%
+	fit = pref/mean([0.975, 0.058823529])*0.3
+
+	return str(mean(fit, change))
 
 
 
