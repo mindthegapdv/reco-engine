@@ -99,8 +99,8 @@ def find_fit(order):
 	query = '''MATCH (c1:Cuisine)-[r1]-(o:Order)-[r2:PARTICIPATED_IN]-(p:Participant)
 			WHERE o.order_id = %s
 			RETURN count(p)''' % order
-	participants = graph.run(query)
-	print(participants)
+	result = graph.run(query)
+	participants = int(result[0])
 
 	max_score = participants*5
 
