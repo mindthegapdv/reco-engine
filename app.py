@@ -18,13 +18,19 @@ def get_count(count):
     return count
     
 
+
+@app.route("/test2")
+def test():
+    return "meow"
+
+
 @app.route("/test1")
 
 def hello():
 	query = "MATCH (p:Participant) RETURN count(p) as count"
 	result = graph.run(query)
 
-	return int([get_count(record['count']) for record in result][0])
+	return str([get_count(record['count']) for record in result][0])
 
 
 # create order 
@@ -104,12 +110,9 @@ def find_fit(order):
 
 	fit = sum_affinity/max_score
 
-	return fit
+	return str(fit)
 
 
-@app.route("/test2")
-def test():
-    return "meow"
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
