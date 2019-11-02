@@ -1,6 +1,7 @@
 # app.py
 
 import os
+import statistics
 
 from py2neo import Graph, Node, Relationship
 import pandas as pd
@@ -115,9 +116,9 @@ def find_fit(order):
 
 	# max preference-based fit = 0.975;	min = 0.058823529
 	# cap max increase/decrease at 30%
-	fit = pref/mean([0.975, 0.058823529])*0.3
+	fit = pref/statistics.mean([0.975, 0.058823529])*0.3
 
-	return str(mean(fit, change))
+	return str(statistics.mean(fit, change))
 
 
 
