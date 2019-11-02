@@ -1,4 +1,4 @@
-id,gender,weight,healthy_feeling,ethnic_food,fav_cuisine,greek_food,indian_food,italian_food,arabic_food,thai_food,diet_restrictions,first_name,last_name,email
+id,gender,weight,healthy_feeling,ethnic_food,fav_cuisine,greek_food,indian_food,italian_food,arabic_food,asian_food,diet_restrictions,first_name,last_name,email
 1,2,187,2,1,Arabic,5,5,5,5,1,halal,Cora,Flynn,Cora.Flynn@need2feed.us
 2,1,155,5,4,Italian,4,4,4,4,2,no nuts,Tiah,Howells,Tiah.Howells@need2feed.us
 3,1,161,6,5,Turkish,5,5,5,5,5,,Kayla,Pacheco,Kayla.Pacheco@need2feed.us
