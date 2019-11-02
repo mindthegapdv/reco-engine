@@ -61,8 +61,8 @@ def add_participant(order_num,email):
 def like(order_num,email):
 	query = '''MATCH (p:Participant)-[r:PARTICIPATED_IN]-(o:Order)-[r2:ORDERED]-(c:Cuisine)
 			WHERE p.email = "%s" and id(o) = %s 
-			MERGE (p)-(r3:LIKES)-(c)
-			SET r.value = r.value + 1''' % (email, order_num)
+			MERGE (p)-(r3:LIKES)->(c)
+			SET r3.value = r3.value + 1''' % (email, order_num)
 	graph.run(query)
 
 	return str(email) + " likes " + str(order_num)

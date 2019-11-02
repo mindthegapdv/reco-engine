@@ -4,6 +4,7 @@ import numpy as np
 from py2neo import Graph, Node, Relationship
 import os
 
+#loads historical orders and participants
 df = pd.read_csv("static/orders.csv")
 df2 = pd.read_csv('static/participants.csv')
 
@@ -38,14 +39,17 @@ df_final = pd.merge(df4, df2, on='id', how='left')
 df_final.to_csv("static/final_dataset.csv", index=False)
 
 
+# provisions initial graphdb
 graphenedb_url = os.environ.get("GRAPHENEDB_BOLT_URL")
 graphenedb_user = os.environ.get("GRAPHENEDB_BOLT_USER")
 graphenedb_pass = os.environ.get("GRAPHENEDB_BOLT_PASSWORD")
 graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bolt = True, secure = True, http_port = 24789, https_port = 24780)
 
+# clears the db
 query = "MATCH (n) DETACH DELETE n"
 graph.run(query)
 
+# create participants 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
 		CREATE (n:Participant {id: row.id, first_name: row.first_name, last_name: row.last_name, email: row.email,
 		gender: toInteger(row.gender), weight: toInteger(row.weight), healthy_feeling: toInteger(row.healthy_feeling), 
@@ -53,15 +57,18 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 graph.run(query)
 
 
+# creates cuisines
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/participants.csv" AS row
 		MERGE (n:Cuisine {name: row.fav_cuisine})'''
 graph.run(query)
 
 
+# creates groups
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/membership.csv" AS row
 		MERGE (n:Group {name: row.client, size: toInteger(row.people)})'''
 graph.run(query)
 
+# adds participants to groups
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/membership.csv" AS row
 		MATCH (n:Participant {id: row.id}), (c:Group {name: row.client})
 		MERGE (n)-[rel:BELONGS_TO]->(c)'''
