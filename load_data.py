@@ -2,14 +2,17 @@ import pandas as pd
 import random
 import numpy as np
 from py2neo import Graph, Node, Relationship
-from os import environ
+import os
 
-df = pd.read_csv("orders.csv")
-df2 = pd.read_csv('participants.csv')
+df = pd.read_csv("static/orders.csv")
+df2 = pd.read_csv('static/participants.csv')
+print(df2.head())
 
+# gets max group size
 df_agg = df[['client', 'people']]
 df_agg = df_agg.groupby('client').max().reset_index()
 
+# gets members per group
 list2=[]
 for i in range(len(df_agg)):
     num = df_agg['people'][i]
@@ -18,7 +21,9 @@ for i in range(len(df_agg)):
         list1.append(random.randrange(120)+1)
         list2.append(list1)
 df3 = pd.DataFrame(list2, columns=['client', 'people', 'id'])
+df3.to_csv("static/membership.csv", index=False)
 
+# gets random members per group participating in orders each day
 list4 = []
 for i in range(len(df)):
     num = df['people'][i]
@@ -31,7 +36,7 @@ for i in range(len(df)):
 df4 = pd.DataFrame(list4, columns=['date', 'time', 'people', 'catering', 'client', 'id'])
 
 df_final = pd.merge(df4, df2, on='id', how='left')
-df_final.to_csv("final_dataset.csv", index=False)
+df_final.to_csv("static/final_dataset.csv", index=False)
 
 
 graphenedb_url = os.environ.get("GRAPHENEDB_BOLT_URL")
