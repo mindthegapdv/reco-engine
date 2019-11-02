@@ -36,7 +36,7 @@ def hello():
 
 def create_order(date,time):
 	query = '''CREATE (o:Order) 
-			SET o.date = %s, o.time = %s''' % (date, time)
+			SET o.date = toString(%s), o.time = toString(%s)''' % (date, time)
 	graph.run(query)
 
 	return "Order created for " + str(date) + " at " + str(time)
