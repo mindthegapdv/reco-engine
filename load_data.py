@@ -149,7 +149,7 @@ graph.run(query)
 
 
 query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static/final_dataset.csv" AS row
-		MATCH (n:Order {order_id: toInteger(row.order_id)}), (c:Participant {id: row.id})
+		MATCH (n:Order {order_id: toInteger(row.order_id)}), (c:Participant {participant_id: toInteger(row.id)})
 		MERGE (c)-[rel:PARTICIPATED_IN]->(n)'''
 graph.run(query)
 
