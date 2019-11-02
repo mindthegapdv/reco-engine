@@ -26,7 +26,7 @@ def hello():
 	query = "MATCH (participant:Participant) RETURN participant limit 3"
 	result = graph.run(query)
 
-	return [get_email(record['participant']) for record in result]
+	return str([get_email(record['participant']) for record in result])
 
 
 
