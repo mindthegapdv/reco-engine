@@ -94,6 +94,9 @@ def dislike(order_num,email):
 	return str(email) + " dislikes " + str(order_num)
 
 
+### Disclaimer: Modify and delete endpoints will be added in the future
+
+
 # gets multiplier in % that the coordinator should increase or decrease the order by for less food waste
 @app.route('/fit/<order_num>')
 
