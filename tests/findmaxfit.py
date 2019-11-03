@@ -1,3 +1,4 @@
+# this is less of a test and more to just see what all the fit scores are for all historical orders... 
 import requests
 
 # lists all "preference" scores for existing orders 
