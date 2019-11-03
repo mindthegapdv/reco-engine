@@ -40,7 +40,7 @@ Example: `http://need2feed-ai.herokuapp.com/add-participant/18/Uzair.Emerson@nee
 
 Example: `http://need2feed-ai.herokuapp.com/like/18/Uzair.Emerson@need2feed.us`
 
-### Add participant likes order relationship
+### Add participant dislikes order relationship
 `@app.route('/dislike/<order_num>/<email>')`
 
 Example: `http://need2feed-ai.herokuapp.com/dislike/18/Uzair.Emerson@need2feed.us`
