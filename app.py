@@ -50,7 +50,7 @@ def add_cuisine(order_num,cuisine):
 			''' % (order_num, cuisine)
 	graph.run(query)
 
-	return str(cuisine) + "added to order number " + str(order_num)
+	return str(cuisine) + " added to order number " + str(order_num)
 
 
 # Endpoint: Add participant to order
