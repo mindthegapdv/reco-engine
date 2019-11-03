@@ -3,9 +3,11 @@ import statistics
 
 from py2neo import Graph, Node, Relationship
 import pandas as pd
+from flask_cors import CORS
 
 from flask import Flask, request, jsonify
 app = Flask(__name__)
+CORS(app)
 
 graphenedb_url = os.environ.get("GRAPHENEDB_BOLT_URL")
 graphenedb_user = os.environ.get("GRAPHENEDB_BOLT_USER")
