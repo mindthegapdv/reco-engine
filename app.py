@@ -117,7 +117,7 @@ def find_fit(order):
 	fit = (pref-0.8)*0.3
 
 	# return str([pref, weight])
-	return str(statistics.mean([fit, change]))
+	return str(statistics.mean([fit, weight]))
 
 
 
