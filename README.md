@@ -23,7 +23,7 @@ But how do we update and get data from our lovely graphdb???
 ### Create order
 @app.route('/create-order/<order_num>/<date>/<time>')
 
-Example: `http://need2feed-ai.herokuapp.com/add-participant/18/Uzair.Emerson@need2feed.us`
+Example: `http://need2feed-ai.herokuapp.com/create-order/18/2019-11-03/12:00`
 
 ### Add cuisine to order
 @app.route('/add-cuisine/<order_num>/<cuisine>')
