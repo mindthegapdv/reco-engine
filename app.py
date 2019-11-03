@@ -1,5 +1,3 @@
-# app.py
-
 import os
 import statistics
 
@@ -18,7 +16,6 @@ graph = Graph(graphenedb_url, user=graphenedb_user, password=graphenedb_pass, bo
 def get_count(count):
     return count
     
-
 
 @app.route("/test2")
 def test():
@@ -114,9 +111,10 @@ def find_fit(order):
 	mean_weight = df.weight.mean()
 	weight = (mean_weight - 161)/20*0.126
 
-	# max preference-based fit = 0.975;	min = 0.058823529
+	# assumptions:
+	# 80-20 rule: you can ever only really please 80% of people, so anything above that = increase in food, below = decrease
 	# cap max increase/decrease at 30%
-	fit = pref/(statistics.mean([0.975, 0.058823529]))*0.3
+	fit = (pref-0.8)*0.3
 
 	return str([pref, weight])
 	# return str(statistics.mean([fit, change]))
