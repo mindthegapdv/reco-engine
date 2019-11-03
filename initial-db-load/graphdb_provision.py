@@ -117,8 +117,3 @@ query = '''LOAD CSV WITH HEADERS FROM "https://need2feed-ai.herokuapp.com/static
 		MERGE (p)-[rel:PARTICIPATED_IN]->(o)'''
 graph.run(query)
 
-
-
-# df = pd.DataFrame(graph.run(query))
-# df.columns=['id', 'gender']
-# print(df.head())
