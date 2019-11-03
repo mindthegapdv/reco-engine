@@ -14,7 +14,7 @@
 
 ### Load data into graphdb
 `python3 graphdb_provision.py`
-Also resets database to factory condition if you mess up :) s
+Also resets database to factory condition if you mess up :) 
 
 
 ## Endpoints 101
