@@ -129,7 +129,7 @@ def find_fit(order_num):
 	fit = (pref-0.8)*0.3
 
 	# return str([pref, weight])
-	return float(statistics.mean([fit, weight]))
+	return {float(statistics.mean([fit, weight]))}
 
 
 
