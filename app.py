@@ -43,7 +43,7 @@ def create_order(order_num,date,time):
 # Endpoint: Add cuisine to order
 @app.route('/add-cuisine/<order_num>/<cuisine>')
 
-def create_order(order_num,cuisine):
+def add_cuisine(order_num,cuisine):
 	query = '''MATCH (c:Cuisine), (o:Order)
 			WHERE o.order_id = %s and c.name = "%s"
 			''' % (order_num, cuisine)
