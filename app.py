@@ -46,6 +46,7 @@ def create_order(order_num,date,time):
 def add_cuisine(order_num,cuisine):
 	query = '''MATCH (c:Cuisine), (o:Order)
 			WHERE o.order_id = %s and c.name = "%s"
+			MERGE (o)-[r:ORDERED]->(c)
 			''' % (order_num, cuisine)
 	graph.run(query)
 
