@@ -112,13 +112,14 @@ def find_fit(order):
 	# mean weight of entire population is 161 lbs. anything over that = more food. under = less food
 	# on average, 20 lbs = an increase of 12.6% increase in calories needed (according to some NHS paper)
 	mean_weight = df.weight.mean()
-	change = (mean_weight - 161)/20*0.126
+	weight = (mean_weight - 161)/20*0.126
 
 	# max preference-based fit = 0.975;	min = 0.058823529
 	# cap max increase/decrease at 30%
 	fit = pref/statistics.mean([0.975, 0.058823529])*0.3
 
-	return str(statistics.mean([fit, change]))
+	return str([fit, weight])
+	# return str(statistics.mean([fit, change]))
 
 
 
