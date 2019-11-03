@@ -116,9 +116,9 @@ def find_fit(order):
 
 	# max preference-based fit = 0.975;	min = 0.058823529
 	# cap max increase/decrease at 30%
-	fit = pref/statistics.mean([0.975, 0.058823529])*0.3
+	fit = pref/(statistics.mean([0.975, 0.058823529]))*0.3
 
-	return str([fit, weight])
+	return str([pref, weight])
 	# return str(statistics.mean([fit, change]))
 
 
