@@ -60,7 +60,7 @@ def add_participant(order_num,email):
 	query = '''MATCH (p:Participant), (o:Order)
 			WHERE p.email = "%s" and o.order_id = %s
 			MERGE (p)-[r:PARTICIPATED_IN]->(o)
-			SET r.value = 0''' % (email, order_num)
+			''' % (email, order_num)
 	graph.run(query)
 
 	return str(email) + " added to order number " + str(order_num)
