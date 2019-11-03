@@ -13,7 +13,8 @@
 `git push heroku master`
 
 ### Load data into graphdb
-`python3 provision.py`
+`python3 graphdb_provision.py`
+Also resets database to factory condition if you mess up :) s
 
 
 ## Endpoints 101
@@ -43,3 +44,19 @@ Example: `http://need2feed-ai.herokuapp.com/dislike/18/Uzair.Emerson@need2feed.u
 @app.route('/fit/<order_num>')
 Example: `http://need2feed-ai.herokuapp.com/fit/18`
 
+This request returns the affinity of each participant in relation to the cuisine that is being ordered. 
+
+Then, the sum of "like" points is divided by the total potential # of "like" points given the size of the participant pool.
+
+This is the initial fit of the cuisine in relation to the participants' preferences. 
+
+Each particiipant is likely to have multiple cuisines that they "like".
+
+Assumptions:
+Mean weight of entire population in the dataset is 161 lbs. Anything over that = more food; anything under = less food
+On average, 20 lbs = an increase of 12.6% increase in calories needed (according to some NHS paper)
+
+80-20 rule: you can ever only really please 80% of people, so anything above that = increase in food, below = decrease
+Cap max increase/decrease multiplier at 30% 
+
+Take an average of these two multipliers for the final one.
